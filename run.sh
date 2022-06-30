@@ -21,4 +21,5 @@ rm "${LOCK}"
 
 git add .
 git commit -m "indexed" -a
+git pull --rebase
 git push
