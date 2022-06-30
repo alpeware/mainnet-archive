@@ -20,7 +20,7 @@ const METADATA_NAME = `metadata.json`
 const METADATA = `${METADATA_DIR}/${METADATA_NAME}`
 
 const MINUTES_MS = 60 * 1000
-const RUNTIME_MAX_MS = 15 * MINUTES_MS
+const RUNTIME_MAX_MS = 13 * MINUTES_MS
 const MAX_RETRY = 7
 
 
