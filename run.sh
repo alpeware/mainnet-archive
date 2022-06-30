@@ -19,7 +19,7 @@ yarn start
 
 rm "${LOCK}"
 
-git add .
-git commit -m "indexed" -a
-git pull --rebase
-git push
+git add . &> /dev/null
+git commit -m "indexed" -a --quiet
+git pull --rebase --quiet
+git push --quiet
