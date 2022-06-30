@@ -79,7 +79,7 @@ const saveMeta = async (height) => {
   return spit(METADATA_DIR, METADATA_NAME, content)
 }
 
-const connectionInfo = { url: RPC_URL, throttleLimit: 10 } 
+const connectionInfo = { url: RPC_URL, throttleLimit: 10, timeout: 15000 } 
 const defaultProvider = new ethers.providers.JsonRpcProvider(connectionInfo, CHAIN_ID)
 
 const currentHeight = async (provider) => provider.getBlockNumber()
