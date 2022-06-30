@@ -88,11 +88,8 @@ const block = async (provider, height) =>
     provider.getBlockWithTransactions(height)
 
 const receipts = async (provider, transactions, process) =>
-    Promise.all(transactions.map((e) => provider.getTransactionReceipt(e.hash).then((f) => Object.assign(e, f)).then((g) => process(g))))
-
-const fetch = async (provider, transactions, process) => {
-  return receipts(provider, transactions, process)
-}
+    Promise.all(transactions.map((e) => callWithRetry(provider.getTransactionReceipt.bind(null, e.hash))
+        .then((f) => Object.assign(e, f)).then((g) => process(g))))
 
 const processReceipt = async (receipt) => {
   const { to, from, blockNumber, transactionIndex, hash, logs, nonce } = receipt
