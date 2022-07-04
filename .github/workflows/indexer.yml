@@ -1,6 +1,9 @@
 # Run indexer
 name: Mainnet Indexer
-on: repository_dispatch
+on:
+  repository_dispatch:
+    types:
+      - index
 jobs:
   index:
     runs-on: ubuntu-latest
